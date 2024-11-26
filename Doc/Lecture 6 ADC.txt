@@ -28,8 +28,7 @@
   .연속적인 변환을 수행하지 않는다
 - DMA Continuous Requests
   .DMA 변환으로 연속 변한을 수행
-
-배터리를 사용하는 시스템의 경우 유기적으로 ADC 작업 수행에서만 Clock을 높였다가 ADC 작업을 안하는 경우에는 Clock을 낮춰서 배터리 소모를 줄인다
+- 배터리를 사용하는 시스템의 경우 유기적으로 ADC 작업 수행에서만 Clock을 높였다가 ADC 작업을 안하는 경우에는 Clock을 낮춰서 배터리 소모를 줄인다
 
 [Kalman Filter]
 - 
@@ -50,7 +49,12 @@
 - 
 - 
 
+[파이썬 모듈 설치]
+- run -> cmd -> pip install matplotlib
+- run -> cmd -> pip install msvc-runtime
 
 [참고]
-https://shorturl.at/hKg5E (강의 링크)
-https://codeshare.io (코드 공유)
+- https://shorturl.at/hKg5E (강의 링크)
+- https://codeshare.io (코드 공유)
+
+
