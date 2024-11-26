@@ -1,0 +1,36 @@
+ADC 계산과정]
+main clock 16MHz(PCLK)
+PSC 1/2 -> 8MHz => T=125ns
+6bits (9 ADC Clock cycles) = T*9=1.125us  888,888sps
+
+main clock 50MHz(PCLK)
+PSC 1/2 -> 25MHz, T=40ns
+6bits (9 ADC Clock cycles) = 360ns 2,777,777sps
+
+강의 셋팅]
+main clock HCLK 100MHz APB1 peripheral clocks 50MHz(PCLK)
+PSC 1/2 -> 25MHz, T=40ns
+12bits (15 ADC Clock cycles) = 600ns 1,666,666sps
+
+ADC Type 
+	- Polling = 샘플링 타임에 영향을 안받는다
+	- DMA, IT= 샘플링 타임에 영향을 받는다
+
+Data Alignment Right Left 
+12Bit
+	Right XXXX 0000 0000 0000  (최소 증가값 : 1, 최대값 : 4095)
+	Left   0000 0000 0000 XXXX  (최소 증가값 : 16, 최대값 : 65535)
+
+Scan Conversion Mode 
+-2개 이상의 채널을 사용할 경우 자동으로 다음 채널로 이동
+
+Continuous Conversion Mode
+-연속적인 변환을 수행한다 
+
+Discontinuous Conversion Mode
+-연속적인 변환을 수행하지 않는다
+
+DMA Continuous Requests
+-DMA 변환으로 연속 변한을 수행
+
+배터리를 사용하는 시스템의 경우 유기적으로 ADC 작업 수행에서만 Clock을 높였다가 ADC 작업을 안하는 경우에는 Clock을 낮춰서 배터리 소모를 줄인다
