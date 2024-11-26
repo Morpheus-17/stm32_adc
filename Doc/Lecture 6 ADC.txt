@@ -1,36 +1,56 @@
-ADC 계산과정]
-main clock 16MHz(PCLK)
-PSC 1/2 -> 8MHz => T=125ns
-6bits (9 ADC Clock cycles) = T*9=1.125us  888,888sps
-
-main clock 50MHz(PCLK)
-PSC 1/2 -> 25MHz, T=40ns
-6bits (9 ADC Clock cycles) = 360ns 2,777,777sps
-
-강의 셋팅]
-main clock HCLK 100MHz APB1 peripheral clocks 50MHz(PCLK)
-PSC 1/2 -> 25MHz, T=40ns
-12bits (15 ADC Clock cycles) = 600ns 1,666,666sps
-
-ADC Type 
+[ADC TYPE]
 	- Polling = 샘플링 타임에 영향을 안받는다
 	- DMA, IT= 샘플링 타임에 영향을 받는다
 
-Data Alignment Right Left 
-12Bit
-	Right XXXX 0000 0000 0000  (최소 증가값 : 1, 최대값 : 4095)
-	Left   0000 0000 0000 XXXX  (최소 증가값 : 16, 최대값 : 65535)
 
-Scan Conversion Mode 
--2개 이상의 채널을 사용할 경우 자동으로 다음 채널로 이동
+[STM32QUBEIDE]
+- ADC 계산과정
+  .main clock 16MHz(PCLK)
+  .PSC 1/2 -> 8MHz => T=125ns
+  .6bits (9 ADC Clock cycles) = T*9=1.125us  888,888sps
 
-Continuous Conversion Mode
--연속적인 변환을 수행한다 
+  .main clock 50MHz(PCLK)
+  .PSC 1/2 -> 25MHz, T=40ns
+  .6bits (9 ADC Clock cycles) = 360ns 2,777,777sps
 
-Discontinuous Conversion Mode
--연속적인 변환을 수행하지 않는다
-
-DMA Continuous Requests
--DMA 변환으로 연속 변한을 수행
+[STM32QUBEIDE SETTING]
+-main clock HCLK 100MHz APB1 peripheral clocks 50MHz(PCLK)
+-PSC 1/2 -> 25MHz, T=40ns
+-2bits (15 ADC Clock cycles) = 600ns 1,666,666sps
+-Data Alignment Right Left
+	12Bit Right XXXX 0000 0000 0000  (최소 증가값 : 1, 최대값 : 4095)
+	12Bit Left   0000 0000 0000 XXXX  (최소 증가값 : 16, 최대값 : 65535)
+- Scan Conversion Mode 
+  .2개 이상의 채널을 사용할 경우 자동으로 다음 채널로 이동
+- Continuous Conversion Mode
+  .연속적인 변환을 수행한다 
+- Discontinuous Conversion Mode
+  .연속적인 변환을 수행하지 않는다
+- DMA Continuous Requests
+  .DMA 변환으로 연속 변한을 수행
 
 배터리를 사용하는 시스템의 경우 유기적으로 ADC 작업 수행에서만 Clock을 높였다가 ADC 작업을 안하는 경우에는 Clock을 낮춰서 배터리 소모를 줄인다
+
+[Kalman Filter]
+- 
+
+[Moving Average Filter]
+- 
+
+[CDS]
+- 황하 카드뮴 수광소자
+- 절대값을 갖지 않기 때문에 즉, 정확한 LUX 를 알수 없다
+- 소자의 특성상 굉장히 민감하다.
+- 셀로판지(R,G,B)를 필터링 시키면 색상을 구별 밝기도 알 수 있다. 
+- 반사되어 들어오는 빛을 이용해서도 물체의 색상을 알수도 있다. 
+- 미르(모노 CCD) ,고영테크(컬러 CCD)  비전시스템 관련 회사 
+- BH1750 : ROHM LUX 단위로 조도를 측정 가능한 센서이다
+
+[NTC Thermistor]
+- 
+- 
+
+
+[참고]
+https://shorturl.at/hKg5E (강의 링크)
+https://codeshare.io (코드 공유)
