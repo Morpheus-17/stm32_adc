@@ -1,0 +1,5 @@
+../Core/Src/app.c:15:7:lookUpTemperature	56	static
+../Core/Src/app.c:46:8:kalmanFilter	24	static
+../Core/Src/app.c:62:10:movingMeanFilter	24	static
+../Core/Src/app.c:85:6:adcPollingConvert	32	static
+../Core/Src/app.c:110:6:app	8	static
