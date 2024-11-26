@@ -110,21 +110,29 @@ print(string.split(','))
 import serial
 import matplotlib.pyplot as plt     # pyplot , animation 이라는 서브 모듈이 존재한다
 import matplotlib.animation as ani
-from collections import deque       #
+from collections import deque       
 
-ser = serial.Serial("COM3", 115200)
+def serialCom():
+    try:
+        ser = serial.Serial("COM3", 115200)
+    except SerialException:
+        pass
+
 # return 이 두개이다 (python의 기능)
 x, y = 3, 4 
 x, *y = 3, 4, 5
 print("x={x}")
 print(y)
 
-fig, ax = plt.subplots()
-#data = deque(maxlen=720)
-bar = ax.bar([0,30], [0,0], width=10)
-ax.set_aspect("equal")
-ax.set_ylim(-20,100)
-
+fig, ax = plt.subplots(figsize=(10,7))
+# 최대 동시에 표현 가능한 개수 maxlen 
+data1 = deque(maxlen=100)
+data2 = deque(maxlen=100)
+data3 = deque(maxlen=100)
+#bar = ax.bar([0,30], [0,0], width=10)
+#ax.set_aspect("equal")
+#ax.set_ylim(-20,100)
+"""
 def update_bar(frame):
     # 문자가 수신되어 있다면
     if ser.in_waiting > 0:
@@ -136,7 +144,26 @@ def update_bar(frame):
             bar[1].set_height(value2)
         except ValueError:
             pass
-anim = ani.FuncAnimation(fig, update_bar, interval = 1, save_count=50)
+"""
+def update_graph(fram):
+    if ser.in_waiting > 0:
+        line = ser.readline().decode("utf-8").rstrip()
+        try:
+            value1, value2, value3 = map(float, line.split('\t'))
+            data1.append(value1)
+            data2.append(value2)
+            data3.append(value3)
+            ax.clear()
+            ax.plot(data1, color="r")
+            ax.plot(data2, color="g")
+            ax.plot(data3, color="b")
+        except ValueError:
+            pass
+        
+
+anim = ani.FuncAnimation(fig, update_graph, interval = 1, save_count=50)
 plt.show()
 ser.close()
+
+
 

@@ -1,5 +1,5 @@
 ../Core/Src/app.c:15:7:lookUpTemperature	4
-../Core/Src/app.c:46:8:kalmanFilter	1
-../Core/Src/app.c:62:10:movingMeanFilter	3
-../Core/Src/app.c:85:6:adcPollingConvert	1
-../Core/Src/app.c:110:6:app	1
+../Core/Src/app.c:45:8:kalmanFilter	1
+../Core/Src/app.c:61:10:movingMeanFilter	3
+../Core/Src/app.c:84:6:adcPollingConvert	1
+../Core/Src/app.c:111:6:app	1

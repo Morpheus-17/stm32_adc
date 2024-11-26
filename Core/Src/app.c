@@ -97,11 +97,13 @@ void adcPollingConvert(){
 	//ADC ÁßÁö
 	HAL_ADC_Stop(&hadc1);
 
-	float temp = lookUpTemperature(adcValue);
+	float temp1 = lookUpTemperature(adcValue);
+	float temp2 = lookUpTemperature(movingMeanFilter(adcValue));
+	float temp3 = lookUpTemperature(kalmanFilter(adcValue));
 
 
 //	printf("%d\t%d\t%d\n ",adcValue, movingMeanFilter(adcValue), (int)(kalmanFilter(adcValue)));
-	printf("%f\t%f\n", temp, kalmanFilter(adcValue));
+	printf("%f\t%f\t%f\n", temp1, temp2, temp3);
 
 	HAL_Delay(50);
 }
